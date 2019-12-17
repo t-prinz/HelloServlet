@@ -38,7 +38,7 @@ public class HelloServlet extends HttpServlet {
 			
 			// Check for environment variable and display if set
 			if (value != null && !value.isEmpty()) {
-				out.println("<p>Environment variable:" + value + "</p>");
+				out.println("<p>Environment variable: " + value + "</p>");
 			}
 
 			out.println("</body>");
