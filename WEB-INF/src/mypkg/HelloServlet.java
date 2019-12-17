@@ -40,8 +40,6 @@ public class HelloServlet extends HttpServlet {
 			if (value != null && !value.isEmpty()) {
 				out.println("<p>Environment variable:" + value + "</p>");
 			}
-			
-			out.println("<p>A Random Number: <strong>" + Math.random() + "</strong></p>");
 
 			out.println("</body>");
 			out.println("</html>");
