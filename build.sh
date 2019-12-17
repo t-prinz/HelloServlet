@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 cd WEB-INF
 
 javac -cp lib/javax.servlet-api-3.1.0.jar -d classes src/mypkg/HelloServlet.java
