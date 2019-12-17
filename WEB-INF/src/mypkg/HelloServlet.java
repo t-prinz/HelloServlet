@@ -35,10 +35,13 @@ public class HelloServlet extends HttpServlet {
 			out.println("<p>Remote Address: " + request.getRemoteAddr() + "</p>");
 			// Generate a random number upon each request
 			out.println("<p>A Random Number: <strong>" + Math.random() + "</strong></p>");
-
+			
+			// Check for environment variable and display if set
 			if (value != null && !value.isEmpty()) {
 				out.println("<p>Environment variable:" + value + "</p>");
 			}
+			
+			out.println("<p>A Random Number: <strong>" + Math.random() + "</strong></p>");
 
 			out.println("</body>");
 			out.println("</html>");
