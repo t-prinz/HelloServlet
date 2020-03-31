@@ -16,3 +16,7 @@ steps:
     echo $(tower_inventory)
     echo $(vm_fq_hostname)
   displayName: 'Display Ansible Tower job parameters'
+
+- script: |
+    curl http://google.com
+  displayName: 'Execute Ansible Tower template'
