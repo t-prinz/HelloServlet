@@ -1,3 +1,3 @@
 # HelloServlet
 
-Sample Java web application
+Sample Java web application.
