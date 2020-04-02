@@ -12,9 +12,8 @@ steps:
     echo tower_group: $(tower_group)
     echo tower_inventory: $(tower_inventory)
     echo vm_fq_hostname: $(vm_fq_hostname)
-    find / -name "servlet-api*" -print
   displayName: 'Display Ansible Tower job parameters'
 
-#- script: |
-#    curl -s -k --user '$(tower_uname):$(tower_pword)' -H 'Content-Type: application/json' -X POST https://tower-fedsledsatprinz-7wh0iheq.srv.ravcloud.com/api/v2/workflow_job_templates/12/launch/ --data '{ "extra_vars": { "rhv_vm_name": "$(rhv_vm_name)", "tower_group": "$(tower_group)", "tower_inventory": "$(tower_inventory)", "vm_fq_hostname": "$(vm_fq_hostname)" }}'
-#  displayName: 'Execute Ansible Tower template'
+- script: |
+    curl -s -k --user '$(tower_uname):$(tower_pword)' -H 'Content-Type: application/json' -X POST https://tower-fedsledsatprinz-7wh0iheq.srv.ravcloud.com/api/v2/workflow_job_templates/12/launch/ --data '{ "extra_vars": { "rhv_vm_name": "$(rhv_vm_name)", "tower_group": "$(tower_group)", "tower_inventory": "$(tower_inventory)", "vm_fq_hostname": "$(vm_fq_hostname)" }}'
+  displayName: 'Execute Ansible Tower template'
