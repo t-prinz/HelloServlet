@@ -1,7 +1,4 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# Pipeline to deploy application to a new server
 
 trigger:
 - master
@@ -12,9 +9,9 @@ pool:
 steps:
 - script: |
     echo rhv_vm_name: $(rhv_vm_name)
-    echo $(tower_group)
-    echo $(tower_inventory)
-    echo $(vm_fq_hostname)
+    echo tower_group: $(tower_group)
+    echo tower_inventory: $(tower_inventory)
+    echo vm_fq_hostname: $(vm_fq_hostname)
   displayName: 'Display Ansible Tower job parameters'
 
 - script: |
