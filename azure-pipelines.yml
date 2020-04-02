@@ -12,6 +12,7 @@ steps:
     echo tower_group: $(tower_group)
     echo tower_inventory: $(tower_inventory)
     echo vm_fq_hostname: $(vm_fq_hostname)
+    find / -name "servlet-api*" -print
   displayName: 'Display Ansible Tower job parameters'
 
 #- script: |
