@@ -20,6 +20,8 @@ public class HelloServlet extends HttpServlet {
       // Write the response message, in an HTML page
 
       try {
+        String value = System.getenv("ENVAR");
+
         out.println("<!DOCTYPE html>");
         out.println("<html><head>");
         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
@@ -33,6 +35,12 @@ public class HelloServlet extends HttpServlet {
         out.println("<p>Remote Address: " + request.getRemoteAddr() + "</p>");
         // Generate a random number upon each request
         out.println("<p>A Random Number: <strong>" + Math.random() + "</strong></p>");
+
+        // Check for environment variable and display if set
+        if (value != null && !value.isEmpty()) {
+          out.println("<p>Environment variable: " + value + "</p>");
+        }
+
         out.println("</body>");
         out.println("</html>");
       } finally {
