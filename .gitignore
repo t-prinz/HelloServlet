@@ -1,8 +1,8 @@
 #
 # Standard Maven .gitignore
 #
-target/
 !target/HelloServlet-1.0.0.war
+target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
