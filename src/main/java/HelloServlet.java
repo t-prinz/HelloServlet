@@ -25,7 +25,7 @@ public class HelloServlet extends HttpServlet {
         out.println("<!DOCTYPE html>");
         out.println("<html><head>");
         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-        out.println("<title>Hello, World!</title></head>");
+        out.println("<title>Hello, World!!</title></head>");
         out.println("<body>");
         out.println("<h1>Hello!</h1>");  // says Hello
         // Echo client's request information
