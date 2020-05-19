@@ -19,6 +19,12 @@ steps:
   inputs:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'OpenShift Demo Cluster'
+    cmd: 'oc start-build jws-app --follow'
+    uselocalOc: true
+- task: oc-cmd@2
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'OpenShift Demo Cluster'
     cmd: 'oc status'
     uselocalOc: true
 
