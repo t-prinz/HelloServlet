@@ -20,7 +20,9 @@ public class HelloServlet extends HttpServlet {
       // Write the response message, in an HTML page
 
       try {
-        String value = System.getenv("ENVAR");
+        String envar_val = System.getenv("ENVAR");
+        String configmap_val = System.getenv("CONFIGMAPVAR");
+        String secret_val = System.getenv("SECRETVAR");
 
         out.println("<!DOCTYPE html>");
         out.println("<html><head>");
@@ -36,9 +38,18 @@ public class HelloServlet extends HttpServlet {
         // Generate a random number upon each request
         out.println("<p>A Random Number: <strong>" + Math.random() + "</strong></p>");
 
-        // Check for environment variable and display if set
-        if (value != null && !value.isEmpty()) {
-          out.println("<p>Environment variable: " + value + "</p>");
+        // Check for environment variables and display if set
+
+        if (envar_val != null && !envar_val.isEmpty()) {
+          out.println("<p>Environment variable: " + envar_val + "</p>");
+        }
+
+        if (configmap_val != null && !configmap_val.isEmpty()) {
+          out.println("<p>Config Map Environment variable: " + configmap_val + "</p>");
+        }
+
+        if (secret_val != null && !secret_val.isEmpty()) {
+          out.println("<p>Secret Environment variable: " + secret_val + "</p>");
         }
 
         out.println("</body>");
