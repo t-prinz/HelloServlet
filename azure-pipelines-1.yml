@@ -32,5 +32,17 @@ stages:
         cmd: 'oc status'
         uselocalOc: true
 
+- stage: test_stage
+  jobs:
+  - job: test_job
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    steps:
+    - task: oc-setup@2
+      inputs:
+        connectionType: 'OpenShift Connection Service'
+        openshiftService: 'OpenShift Demo Cluster'
+
     - script: oc tag `oc describe imagestream hello -n development |grep sha256|grep -m 1 "\*"|cut -d / -f 2,3` development/hello:promoteToTest
       displayName: 'Tag the new container image'
