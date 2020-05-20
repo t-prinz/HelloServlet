@@ -35,9 +35,5 @@ steps:
 #    cmd: 'oc tag `oc describe imagestream hello -n development |grep sha256|grep -m 1 "\*"|cut -d / -f 2,3` development/hello:promoteToTest'
 #    uselocalOc: true
 
-- task: ManualIntervention@8
-  inputs:
-    instructions: 'Promote to test?'
-
 - script: oc tag `oc describe imagestream hello -n development |grep sha256|grep -m 1 "\*"|cut -d / -f 2,3` development/hello:promoteToTest
   displayName: 'Tag the new container image'
