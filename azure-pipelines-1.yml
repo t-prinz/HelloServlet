@@ -34,15 +34,20 @@ stages:
 
 - stage: test_stage
   jobs:
-  - job: test_job
+  - deployment: deployToTest
+    displayName: Deploy to Test environment
     pool:
       vmImage: 'ubuntu-latest'
+    # creates an environment if it doesn't exist
+    environment: 'test'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: oc-setup@2
+            inputs:
+              connectionType: 'OpenShift Connection Service'
+              openshiftService: 'OpenShift Demo Cluster'
 
-    steps:
-    - task: oc-setup@2
-      inputs:
-        connectionType: 'OpenShift Connection Service'
-        openshiftService: 'OpenShift Demo Cluster'
-
-    - script: oc tag `oc describe imagestream hello -n development |grep sha256|grep -m 1 "\*"|cut -d / -f 2,3` development/hello:promoteToTest
-      displayName: 'Tag the new container image'
+          - script: oc tag `oc describe imagestream hello -n development |grep sha256|grep -m 1 "\*"|cut -d / -f 2,3` development/hello:promoteToTest
+            displayName: 'Tag the new container image'
