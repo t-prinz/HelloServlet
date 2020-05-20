@@ -29,7 +29,7 @@ public class HelloServlet extends HttpServlet {
         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
         out.println("<title>Hello, World!</title></head>");
         out.println("<body>");
-        out.println("<h1>Hello from OpenShift!!</h1>");  // says Hello
+        out.println("<h1>Hello from OpenShift!!!</h1>");  // says Hello
         // Echo client's request information
         out.println("<p>Request URI: " + request.getRequestURI() + "</p>");
         out.println("<p>Protocol: " + request.getProtocol() + "</p>");
