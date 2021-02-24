@@ -24,7 +24,8 @@ mkdir -p WEB-INF/classes
 # Compile the application; put the class file in a separate directory
 
 echo "Compiling the application"
-javac -g -nowarn -target 1.8 -source 1.8 -encoding UTF-8 -classpath ~/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar -d WEB-INF/classes ../src/main/java/mypkg/HelloServlet.java 
+# -g
+javac -nowarn -target 1.8 -source 1.8 -encoding UTF-8 -classpath ~/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar -d WEB-INF/classes ../src/main/java/mypkg/HelloServlet.java 
 
 # Copy over the web.xml file
 
