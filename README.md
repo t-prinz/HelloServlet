@@ -39,3 +39,13 @@ image-registry.openshift-image-registry.svc:5000/openshift/jboss-eap72-openshift
 
 JWS is using
 image-registry.openshift-image-registry.svc:5000/openshift/jboss-webserver50-tomcat9-openshift@sha256:2a13f1f97a7c58242e3a7dfe57a614764b8b3970015a2f0f29aa8d74c38e5caf
+
+Deploying using a base EAP image
+
+oc new-app --name=tprinzeaps2i registry.redhat.io/jboss-eap-7/eap73-openjdk8-openshift-rhel7~https://github.com/t-prinz/HelloServlet.git
+oc expose svc/tprinzeaps2i
+
+Deploying using a base JWS image
+
+oc new-app --name=tprinzjwss2i registry.redhat.io/jboss-webserver-5/webserver54-openjdk8-tomcat9-openshift-rhel8~https://github.com/t-prinz/HelloServlet.git
+oc expose svc/tprinzjwss2i
