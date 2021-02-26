@@ -61,3 +61,8 @@ http://localhost:8080/HelloServlet-1.0.0/
 Run the docker image
 
 oc new-app --name=dockereap --docker-image=quay.io/tprinz/dockereap:latest
+
+Use OpenShift s2i to build the app using the Docker file
+
+oc new-app --name=s2idocker https://github.com/t-prinz/HelloServlet.git --strategy=docker
+oc expose svc/s2idocker
