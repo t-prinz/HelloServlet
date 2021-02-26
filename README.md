@@ -49,3 +49,15 @@ Deploying using a base JWS image
 
 oc new-app --name=tprinzjwss2i registry.redhat.io/jboss-webserver-5/webserver54-openjdk8-tomcat9-openshift-rhel8~https://github.com/t-prinz/HelloServlet.git
 oc expose svc/tprinzjwss2i
+
+Manually building a Docker image
+
+
+
+Access the application at
+
+http://localhost:8080/HelloServlet-1.0.0/
+
+Run the docker image
+
+oc new-app --name=dockereap --docker-image=quay.io/tprinz/dockereap:latest
