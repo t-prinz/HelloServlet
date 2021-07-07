@@ -34,89 +34,126 @@ To list all local templates and image streams, use:
 
 This method uses the war file that was previously built along with the Dockerfile in this repository.  When specifying a docker build strategy, OpenShift looks for a file named Dockerfile in the repository, hence the copying of the EAP and JWS Dockerfiles.  There is probably a better way to do this.
 
-Build and deploy the EAP container
+### Build and deploy the EAP container
 
-cp Dockerfile-EAP Dockerfile
-git add Dockerfile
-git commit Dockerfile -m "temporarily specify Dockerfile"
-git push origin master
-oc new-app --name=helloworld-eap https://github.com/t-prinz/HelloServlet.git --strategy=docker
-oc expose svc/helloworld-eap
-rm Dockerfile
+`cp Dockerfile-EAP Dockerfile`
+`git add Dockerfile`
+`git commit Dockerfile -m "temporarily specify Dockerfile"`
+`git push origin master`
+`oc new-app --name=helloworld-eap https://github.com/t-prinz/HelloServlet.git --strategy=docker`
+`oc expose svc/helloworld-eap`
+`git rm Dockerfile`
+`git commit Dockerfile -m "remove temporary Dockerfile"`
+`git push origin master`
 
-Build and deploy the JWS container
+Follow the logs and wait until the buid finishes
 
-cp Dockerfile-JWS Dockerfile
-git add Dockerfile
-git commit Dockerfile -m "temporarily specify Dockerfile"
-git push origin master
-oc new-app --name=helloworld-jws https://github.com/t-prinz/HelloServlet.git --strategy=docker
-oc expose svc/helloworld-jws
-rm Dockerfile
+`oc logs -f buildconfig/helloworld-eap`
 
+Get the route to the application
+
+`oc get route helloworld-eap`
+
+The URL to visit will be
+
+http://<your-route>/HelloServlet-1.0.0
+
+Delete all of the OpenShift resources
+
+`oc delete all --all`
+
+### Build and deploy the JWS container
+
+`cp Dockerfile-JWS Dockerfile`
+`git add Dockerfile`
+`git commit Dockerfile -m "temporarily specify Dockerfile"`
+`git push origin master`
+`oc new-app --name=helloworld-jws https://github.com/t-prinz/HelloServlet.git --strategy=docker`
+`oc expose svc/helloworld-jws`
+`git rm Dockerfile`
+`git commit Dockerfile -m "remove temporary Dockerfile"`
+`git push origin master`
+
+Follow the logs and wait until the buid finishes
+
+`oc logs -f buildconfig/helloworld-jws`
+
+Get the route to the application
+
+`oc get route helloworld-jws`
+
+The URL to visit will be
+
+http://<your-route>/HelloServlet-1.0.0
+
+Delete all of the OpenShift resources
+
+`oc delete all --all`
 
 ## OpenShift Source-to-Image (S2I) build
 
-### To have OpenShift build this application using a Java Web Server (JWS) template
+### Use OpenShift build this application using an EAP template
 
+Find the available EAP templates
+
+`oc new-app --search --template=eap`
+
+Get the parameters for the template
+
+`oc new-app --search --template=eap73-basic-s2i --output=yaml`
+
+Create the application
+
+`oc new-app --template=eap73-basic-s2i --param=APPLICATION_NAME=helloworld-eap --param=SOURCE_REPOSITORY_URL=https://github.com/t-prinz/HelloServlet.git --param=SOURCE_REPOSITORY_REF=master --param=CONTEXT_DIR=""`
+
+As before, follow the logs and wait until the build finishes.  Then get the route to the application; the URL to visit will be
+
+http://<your-route>/HelloServlet-1.0.0
+
+Delete all of the OpenShift resources
+
+`oc delete all --all`
+
+### Use OpenShift to build this application using a Java Web Server (JWS) template
 
 Find the available JWS templates
 
 `oc new-app --search --template=jws`
 
-Get the parameters for the template used in this example
+Get the parameters for the template used in this example (the template name may be slightly different)
 
-oc new-app --search --template=jws50-tomcat9-basic-s2i --output=yaml
-
-Create the application
-
-oc new-app --template=jws50-tomcat9-basic-s2i --param=APPLICATION_NAME=tprinzjws --param=SOURCE_REPOSITORY_URL=https://github.com/t-prinz/HelloServlet.git --param=SOURCE_REPOSITORY_REF=master --param=CONTEXT_DIR=""
-
-Once built, navigate to the route but append /HelloServlet-1.0.0 to the URL
-
-To have OpenShift build this application using an EAP template
-
-Find the available EAP templates
-
-oc new-app --search --template=eap
-
-Get the parameters for the template
-
-oc new-app --search --template=eap72-basic-s2i --output=yaml
+`oc new-app --search --template=jws53-openjdk11-tomcat9-basic-s2i --output=yaml`
 
 Create the application
 
-oc new-app --template=eap72-basic-s2i --param=APPLICATION_NAME=tprinzeap --param=SOURCE_REPOSITORY_URL=https://github.com/t-prinz/HelloServlet.git --param=SOURCE_REPOSITORY_REF=master --param=CONTEXT_DIR=""
+`oc new-app --template=jws53-openjdk11-tomcat9-basic-s2i --param=APPLICATION_NAME=helloworld-jws --param=SOURCE_REPOSITORY_URL=https://github.com/t-prinz/HelloServlet.git --param=SOURCE_REPOSITORY_REF=master --param=CONTEXT_DIR=""`
 
-Once built, navigate to the route but append /HelloServlet-1.0.0 to the URL
+As before, follow the logs and wait until the build finishes.  Then get the route to the application; the URL to visit will be
 
-EAP is using
-image-registry.openshift-image-registry.svc:5000/openshift/jboss-eap72-openshift@sha256:e78f3020712cf12dc04dfd325e5c4759c298cd1b805f4920a4f41995d469bb0d
+http://<your-route>/HelloServlet-1.0.0
 
-JWS is using
-image-registry.openshift-image-registry.svc:5000/openshift/jboss-webserver50-tomcat9-openshift@sha256:2a13f1f97a7c58242e3a7dfe57a614764b8b3970015a2f0f29aa8d74c38e5caf
+Delete all of the OpenShift resources
 
-Deploying using a base EAP image
+`oc delete all --all`
 
-oc new-app --name=tprinzeaps2i registry.redhat.io/jboss-eap-7/eap73-openjdk8-openshift-rhel7~https://github.com/t-prinz/HelloServlet.git
-oc expose svc/tprinzeaps2i
+### Use OpenShift to build this application using a base EAP image
 
-Deploying using a base JWS image
+`oc new-app --name=helloworld-eap registry.redhat.io/jboss-eap-7/eap73-openjdk8-openshift-rhel7~https://github.com/t-prinz/HelloServlet.git`
+`oc expose svc/helloworld-eap`
 
-oc new-app --name=tprinzjwss2i registry.redhat.io/jboss-webserver-5/webserver54-openjdk8-tomcat9-openshift-rhel8~https://github.com/t-prinz/HelloServlet.git
-oc expose svc/tprinzjwss2i
+### Use OpenShift to build this application using a base JWS image
 
-Manually building a Docker image
+`oc new-app --name=helloworld-jws registry.redhat.io/jboss-webserver-5/webserver54-openjdk8-tomcat9-openshift-rhel8~https://github.com/t-prinz/HelloServlet.git`
+`oc expose svc/helloworld-jws`
 
+Below is a work in progress
 
+## Deploy the application from a container image
 
-Access the application at
+### Deploy the pre-built Docker EAP image to OpenShift
 
-http://localhost:8080/HelloServlet-1.0.0/
+`oc new-app --name=helloworld-eap --docker-image=quay.io/tprinz/helloworld-eap:latest`
 
-Run the docker image
+### Deploy the pre-built Docker JWS image to OpenShift
 
-oc new-app --name=dockereap --docker-image=quay.io/tprinz/dockereap:latest
-
-Use OpenShift s2i to build the app using the Docker file
-
+`oc new-app --name=helloworld-jws --docker-image=quay.io/tprinz/helloworld-jws:latest`
