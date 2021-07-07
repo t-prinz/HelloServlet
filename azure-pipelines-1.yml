@@ -19,17 +19,31 @@ stages:
         connectionType: 'OpenShift Connection Service'
         openshiftService: 'OpenShift Demo Cluster'
 
+#    - task: oc-cmd@2
+#      inputs:
+#        connectionType: 'OpenShift Connection Service'
+#        openshiftService: 'OpenShift Demo Cluster'
+#        cmd: 'oc start-build hello -n development --follow'
+#        uselocalOc: true
+
     - task: oc-cmd@2
       inputs:
         connectionType: 'OpenShift Connection Service'
         openshiftService: 'OpenShift Demo Cluster'
-        cmd: 'oc start-build hello -n development --follow'
-        uselocalOc: true
+        cmd: 'oc new-app -n tprinz-dev --name=tprinzeaps2i registry.redhat.io/jboss-eap-7/eap73-openjdk8-openshift-rhel7~https://github.com/t-prinz/HelloServlet.git'
+        uselocalOc: 
     - task: oc-cmd@2
       inputs:
         connectionType: 'OpenShift Connection Service'
         openshiftService: 'OpenShift Demo Cluster'
         cmd: 'oc status'
+        uselocalOc: true
+
+    - task: oc-cmd@2
+      inputs:
+        connectionType: 'OpenShift Connection Service'
+        openshiftService: 'OpenShift Demo Cluster'
+        cmd: 'oc expose svc/tprinzeaps2i'
         uselocalOc: true
 
 - stage: test_stage
@@ -49,5 +63,5 @@ stages:
               connectionType: 'OpenShift Connection Service'
               openshiftService: 'OpenShift Demo Cluster'
 
-          - script: oc tag `oc describe imagestream hello -n development |grep sha256|grep -m 1 "\*"|cut -d / -f 2,3` development/hello:promoteToTest
-            displayName: 'Tag the new container image'
+#          - script: oc tag `oc describe imagestream hello -n development |grep sha256|grep -m 1 "\*"|cut -d / -f 2,3` development/hello:promoteToTest
+#            displayName: 'Tag the new container image'
