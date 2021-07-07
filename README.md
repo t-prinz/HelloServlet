@@ -4,6 +4,10 @@ Sample Java web application that can be deployed to OpenShift using EAP or Java 
 
 To have OpenShift build this application using a Java Web Server (JWS) template
 
+To list all local templates and image streams, use:
+
+oc new-app -L
+
 Find the available JWS templates
 
 oc new-app --search --template=jws
