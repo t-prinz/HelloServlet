@@ -153,7 +153,9 @@ Below is a work in progress
 ### Deploy the pre-built Docker EAP image to OpenShift
 
 `oc new-app --name=helloworld-eap --docker-image=quay.io/tprinz/helloworld-eap:latest`
+`oc expose svc/helloworld-eap`
 
 ### Deploy the pre-built Docker JWS image to OpenShift
 
 `oc new-app --name=helloworld-jws --docker-image=quay.io/tprinz/helloworld-jws:latest`
+`oc expose svc/helloworld-jws`
