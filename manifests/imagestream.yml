@@ -1,0 +1,74 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+    openshift.io/image.dockerRepositoryCheck: "2021-04-28T21:47:49Z"
+  creationTimestamp: "2021-04-28T21:47:49Z"
+  generation: 2
+  labels:
+    app: dockereap
+    app.kubernetes.io/component: dockereap
+    app.kubernetes.io/instance: dockereap
+  managedFields:
+  - apiVersion: image.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:openshift.io/generated-by: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:app.kubernetes.io/component: {}
+          f:app.kubernetes.io/instance: {}
+      f:spec:
+        f:tags:
+          .: {}
+          k:{"name":"latest"}:
+            .: {}
+            f:annotations:
+              .: {}
+              f:openshift.io/imported-from: {}
+            f:from:
+              .: {}
+              f:kind: {}
+              f:name: {}
+            f:generation: {}
+            f:importPolicy: {}
+            f:name: {}
+            f:referencePolicy:
+              .: {}
+              f:type: {}
+    manager: oc
+    operation: Update
+    time: "2021-04-28T21:47:49Z"
+  name: dockereap
+  namespace: tprinz-dev
+  resourceVersion: "60834839"
+  uid: a7d99268-f672-44a3-bd38-e99b3d7ade46
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+  - annotations:
+      openshift.io/imported-from: quay.io/tprinz/dockereap:latest
+    from:
+      kind: DockerImage
+      name: quay.io/tprinz/dockereap:latest
+    generation: 2
+    importPolicy: {}
+    name: latest
+    referencePolicy:
+      type: Source
+status:
+  dockerImageRepository: image-registry.openshift-image-registry.svc:5000/tprinz-dev/dockereap
+  publicDockerImageRepository: default-route-openshift-image-registry.apps.sandbox-m2.ll9k.p1.openshiftapps.com/tprinz-dev/dockereap
+  tags:
+  - items:
+    - created: "2021-04-28T21:47:49Z"
+      dockerImageReference: quay.io/tprinz/dockereap@sha256:c542191d0bdb87622fb69de6d4a8827416247fb56c7a6405900ab5bd255dc093
+      generation: 2
+      image: sha256:c542191d0bdb87622fb69de6d4a8827416247fb56c7a6405900ab5bd255dc093
+    tag: latest

@@ -1,0 +1,7 @@
+--> Creating resources ...
+    imagestream.image.openshift.io "eap73-openjdk8-openshift-rhel7" created
+    imagestream.image.openshift.io "tprinzeaps2i" created
+    buildconfig.build.openshift.io "tprinzeaps2i" created
+    deployment.apps "tprinzeaps2i" created
+    service "tprinzeaps2i" created
+--> Success
