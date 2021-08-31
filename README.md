@@ -36,15 +36,15 @@ This method uses the war file that was previously built along with the Dockerfil
 
 ### Build and deploy the EAP container
 
-`cp Dockerfile-EAP Dockerfile`
-`git add Dockerfile`
-`git commit Dockerfile -m "temporarily specify Dockerfile"`
-`git push origin master`
-`oc new-app --name=helloworld-eap https://github.com/t-prinz/HelloServlet.git --strategy=docker`
-`oc expose svc/helloworld-eap`
-`git rm Dockerfile`
-`git commit Dockerfile -m "remove temporary Dockerfile"`
-`git push origin master`
+    cp Dockerfile-EAP Dockerfile
+    git add Dockerfile
+    git commit Dockerfile -m "temporarily specify Dockerfile"
+    git push origin master
+    oc new-app --name=helloworld-eap https://github.com/t-prinz/HelloServlet.git --strategy=docker
+    oc expose svc/helloworld-eap
+    git rm Dockerfile
+    git commit Dockerfile -m "remove temporary Dockerfile"
+    git push origin master
 
 Follow the logs and wait until the buid finishes
 
@@ -56,7 +56,7 @@ Get the route to the application
 
 The URL to visit will be
 
-http://<your-route>/HelloServlet-1.0.0
+    http://<your-route>/HelloServlet-1.0.0
 
 Delete all of the OpenShift resources
 
@@ -64,15 +64,15 @@ Delete all of the OpenShift resources
 
 ### Build and deploy the JWS container
 
-`cp Dockerfile-JWS Dockerfile`
-`git add Dockerfile`
-`git commit Dockerfile -m "temporarily specify Dockerfile"`
-`git push origin master`
-`oc new-app --name=helloworld-jws https://github.com/t-prinz/HelloServlet.git --strategy=docker`
-`oc expose svc/helloworld-jws`
-`git rm Dockerfile`
-`git commit Dockerfile -m "remove temporary Dockerfile"`
-`git push origin master`
+    cp Dockerfile-JWS Dockerfile
+    git add Dockerfile
+    git commit Dockerfile -m "temporarily specify Dockerfile"
+    git push origin master
+    oc new-app --name=helloworld-jws https://github.com/t-prinz/HelloServlet.git --strategy=docker
+    oc expose svc/helloworld-jws
+    git rm Dockerfile
+    git commit Dockerfile -m "remove temporary Dockerfile"
+    git push origin master
 
 Follow the logs and wait until the buid finishes
 
@@ -84,7 +84,7 @@ Get the route to the application
 
 The URL to visit will be
 
-http://<your-route>/HelloServlet-1.0.0
+    http://<your-route>/HelloServlet-1.0.0
 
 Delete all of the OpenShift resources
 
@@ -108,7 +108,7 @@ Create the application
 
 As before, follow the logs and wait until the build finishes.  Then get the route to the application; the URL to visit will be
 
-http://<your-route>/HelloServlet-1.0.0
+    http://<your-route>/HelloServlet-1.0.0
 
 Delete all of the OpenShift resources
 
@@ -130,7 +130,7 @@ Create the application
 
 As before, follow the logs and wait until the build finishes.  Then get the route to the application; the URL to visit will be
 
-http://<your-route>/HelloServlet-1.0.0
+    http://<your-route>/HelloServlet-1.0.0
 
 Delete all of the OpenShift resources
 
@@ -138,13 +138,13 @@ Delete all of the OpenShift resources
 
 ### Use OpenShift to build this application using a base EAP image
 
-`oc new-app --name=helloworld-eap registry.redhat.io/jboss-eap-7/eap73-openjdk8-openshift-rhel7~https://github.com/t-prinz/HelloServlet.git`
-`oc expose svc/helloworld-eap`
+    oc new-app --name=helloworld-eap registry.redhat.io/jboss-eap-7/eap73-openjdk8-openshift-rhel7~https://github.com/t-prinz/HelloServlet.git
+    oc expose svc/helloworld-eap
 
 ### Use OpenShift to build this application using a base JWS image
 
-`oc new-app --name=helloworld-jws registry.redhat.io/jboss-webserver-5/webserver54-openjdk8-tomcat9-openshift-rhel8~https://github.com/t-prinz/HelloServlet.git`
-`oc expose svc/helloworld-jws`
+    oc new-app --name=helloworld-jws registry.redhat.io/jboss-webserver-5/webserver54-openjdk8-tomcat9-openshift-rhel8~https://github.com/t-prinz/HelloServlet.git
+    oc expose svc/helloworld-jws
 
 Below is a work in progress
 
@@ -152,10 +152,10 @@ Below is a work in progress
 
 ### Deploy the pre-built Docker EAP image to OpenShift
 
-`oc new-app --name=helloworld-eap --docker-image=quay.io/tprinz/helloworld-eap:latest`
-`oc expose svc/helloworld-eap`
+    oc new-app --name=helloworld-eap --docker-image=quay.io/tprinz/helloworld-eap:latest
+    oc expose svc/helloworld-eap
 
 ### Deploy the pre-built Docker JWS image to OpenShift
 
-`oc new-app --name=helloworld-jws --docker-image=quay.io/tprinz/helloworld-jws:latest`
-`oc expose svc/helloworld-jws`
+    oc new-app --name=helloworld-jws --docker-image=quay.io/tprinz/helloworld-jws:latest
+    oc expose svc/helloworld-jws
