@@ -10,6 +10,7 @@ pipeline {
                 sh 'echo trying to connect to cluster...'
                 script {
                     openshift.withCluster() {
+                        echo "Inside the OpenShift cluster"
                     }
                 }
             }
