@@ -10,8 +10,6 @@ pipeline {
                 sh 'echo trying to connect to cluster...'
                 script {
                     openshift.withCluster('ocpsandbox') {
-                        echo "Inside the OpenShift cluster"
-                        echo "`oc whoami`"
                         def saSelector1 = openshift.selector( "serviceaccount" )
                         saSelector1.describe()
                     }
