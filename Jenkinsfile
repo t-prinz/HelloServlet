@@ -2,7 +2,13 @@ pipeline {
     agent any
     stages {
         stage('build') {
-            openshift.withCluster() {
+            steps {
+                openshift.withCluster() {
+                }
+                sh 'echo hello'
+                sh 'id'
+                sh 'echo $PATH'
+                sh 'oc version'
             }
         }
     }
