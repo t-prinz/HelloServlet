@@ -1,3 +1,5 @@
+* Example using OpenShift plugin with external Jenkins instance
+
 References:
 https://github.com/openshift/jenkins-client-plugin
 
