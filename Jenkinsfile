@@ -11,7 +11,7 @@ pipeline {
                 script {
                     openshift.withCluster() {
                         echo "Inside the OpenShift cluster"
-                        oc whoami
+                        echo "`oc whoami`"
                     }
                 }
             }
