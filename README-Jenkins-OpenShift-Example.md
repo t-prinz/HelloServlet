@@ -1,26 +1,45 @@
-* Example using OpenShift plugin with external Jenkins instance
+# Example using OpenShift plugin with external Jenkins instance
+
+This  example shows how to install the OpenShift plugin to an external Jenkins instance, meaning a Jenkins instance that was not deployed via the OpenShift Jenkins container image.
+
+In this example, a basic Jenkins installation is performed inside of a stock RHEL 8 virtual machine.  From there, the Jenkins instance is configured to communicate with an OpenShift cluster.
 
 References:
 https://github.com/openshift/jenkins-client-plugin
 
-1.  Download Jenkins OpenShift client (1.0.35) from https://updates.jenkins-ci.org/download/plugins/openshift-client/
-NOTE:  1.0.37 did not work for me.
-Open Jenkins in your browser, and navigate (as an administrator):
-Manage Jenkins > Manage Plugins.
-Select the "Advanced" Tab.
-Find the "Deploy Plugin" HTML form and select the openshift-client.hpi from the previous steps.
-Deploy the file.
-Check that Jenkins should be restarted (Wait until restart is complete and log back in).
+## Deploy a RHEL 8 virtual machine
 
-Provision an OpenShift Sandbox cluster
+Provision a RHEL 8 system and update it (RHEL 8.5 was used for this example).
+
+## Provision an OpenShift Sandbox cluster (if an existing OpenShift cluster is not available)
+
 Navigate to https://developers.redhat.com/developer-sandbox
 Click on Get Started
-Clock on "Launch your Developer Sandbox for Red Hat OpenShift"
+Click on "Launch your Developer Sandbox for Red Hat OpenShift"
 Click on "Start using your sandbox"
 
-If the command line tools are not installed
+## Download the OpenShift client for both the Jenkins server and your laptop
+
+Login to your OpenShift cluster using a web browser
 Click on the "?" button in the upper right hand corner and select "Command line tools"
-Download the appropriate binary for your platform
+Download the Linux binary (for the Jenkins server) and the appropriate binary for your platform
+
+## Install Jenkins
+
+The following Ansible playbook was used to perform the Jenkins installation:
+
+## Install the OpenShift Jenkins plugin
+
+* Download Jenkins OpenShift client (use version 1.0.35 as 1.0.37 did not work) from https://updates.jenkins-ci.org/download/plugins/openshift-client/
+* Open Jenkins in your browser, and navigate to Manage Jenkins > Manage Plugins.
+* Select the "Advanced" Tab.
+* Find the "Deploy Plugin" HTML form and select the openshift-client.hpi from the previous steps.
+* Deploy the file.
+* Check the box that indicates Jenkins should be restarted. (Wait until restart is complete and log back in).
+
+
+
+
 
 Obtain your OpenShift login token
 Click on your login name in the upper right hand corner and select "Copy login command"
