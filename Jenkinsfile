@@ -4,6 +4,8 @@ pipeline {
         stage('build') {
             steps {
                 sh 'echo hello'
+                sh 'id'
+                sh 'echo $PATH'
             }
         }
     }
