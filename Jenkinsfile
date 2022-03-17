@@ -6,6 +6,7 @@ pipeline {
                 sh 'echo hello'
                 sh 'id'
                 sh 'echo $PATH'
+                sh 'oc version'
             }
         }
     }
