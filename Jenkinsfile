@@ -12,10 +12,8 @@ pipeline {
                     openshift.withCluster() {
                         echo "Inside the OpenShift cluster"
                         echo "`oc whoami`"
-                        openshift.withProject() {
-                            def saSelector1 = openshift.selector( "serviceaccount" )
-                            saSelector1.describe()
-                        }
+                        def saSelector1 = openshift.selector( "serviceaccount" )
+                        saSelector1.describe()
                     }
                 }
             }
