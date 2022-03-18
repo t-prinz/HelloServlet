@@ -56,12 +56,7 @@ The following Ansible playbook was used to perform the Jenkins installation:
 * Deploy the file.
 * Check the box that indicates Jenkins should be restarted. (Wait until restart is complete and log back in).
 
-
-
-
-Configure an OpenShift Cluster in Jenkins using the following:
-
-https://github.com/openshift/jenkins-client-plugin#configuring-an-openshift-cluster
+## Configure an OpenShift Cluster in Jenkins
 
 * Click on "Add OpenShift Cluster"
 * Provide a name and the REST API URL
