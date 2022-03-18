@@ -47,6 +47,10 @@ The following Ansible playbook was used to perform the Jenkins installation:
 
 `https://github.com/t-prinz/jenkins_playbooks.git`
 
+## Configure Jenkins with git and the OpenShift client if using the Jenkins server as an agent
+
+In this example, the Jenkins server is used as the agent so git needs to be installed as well as the OpenShift client (oc).  For this example, copy the OpenShift Linux client to /usr/local/bin on the Jenkins server.
+
 ## Install the OpenShift Jenkins plugin
 
 * Download the Jenkins OpenShift client from https://updates.jenkins-ci.org/download/plugins/openshift-client/ (use version 1.0.35 as 1.0.37 did not work)
