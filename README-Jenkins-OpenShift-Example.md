@@ -45,6 +45,8 @@ https://github.com/openshift/jenkins-client-plugin
 
 `oc whoami -t`
 
+NOTE:  If you are using an OpenShift Sandbox cluster, then you will need to login to the cluster afer it idles down in order to get a new login token.
+
 ## Install Jenkins
 
 The following Ansible playbook was used to perform the Jenkins installation:
