@@ -7,7 +7,7 @@ pipeline {
                 sh 'oc version'
                 script {
                     openshift.withCluster('ocpsandbox') {
-                        openshift.withProject() {
+                        openshift.withProject('tprinz-dev') {
                             def saSelector1 = openshift.selector( "serviceaccount" )
                             saSelector1.describe()
                         }
