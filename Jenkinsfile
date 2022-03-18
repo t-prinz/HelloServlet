@@ -14,6 +14,9 @@ pipeline {
 
                             def buildSelector = openshift.selector( 'buildconfig/helloworld-jws' )
                             buildSelector.describe()
+
+                            def newBuild = buildSelector.startBuild()
+                            newBuild.logs('-f')
                         }
                     }
                 }
