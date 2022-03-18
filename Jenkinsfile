@@ -10,6 +10,8 @@ pipeline {
                         openshift.withProject('tprinz-dev') {
                             def saSelector1 = openshift.selector( "serviceaccount" )
                             saSelector1.describe()
+                            def bcSelector = openshift.selector( "buildconfig" )
+                            bc.Selector.describe()
                         }
                     }
                 }
