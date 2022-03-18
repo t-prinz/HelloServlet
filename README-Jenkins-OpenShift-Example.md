@@ -30,7 +30,7 @@ https://github.com/openshift/jenkins-client-plugin
 * Click on Display Token
 * Take note of your API token
 
-## Obtain your OpenShift REST API URL
+## Obtain your OpenShift REST API URL and default project name
 
 * Using the login command copied above, run it on your system where oc is installed.
 * Once logged in, run the following command to obtain the cluster REST API URL:
