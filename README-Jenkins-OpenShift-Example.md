@@ -37,6 +37,10 @@ https://github.com/openshift/jenkins-client-plugin
 
 `oc whoami --show-server`
 
+* Run the following command to get your default project name (will be used later)
+
+`oc project`
+
 * For reference, you can retrieve your API token with the following command:
 
 `oc whoami -t`
@@ -69,13 +73,27 @@ In this example, the Jenkins server is used as the agent so git needs to be inst
 * Provide an ID
 * Select the "Disable TLS Verify" option
 
+## Create the Jenkinsfile
+
+* Review the Jenkins file at https://github.com/t-prinz/HelloServlet.git
+* Either clone this repository or copy this Jenkinsfile into your own repository
+* Update the Jenkinsfile to include the name of your cluster (as defined above)
+
+`openshift.withCluster('YOUR_CLUSTER_NAME') {`
+
+* Update the Jenkinsfile to include the name of your default project (as found above)
+
+`openshift.withProject('YOUR_DEFAULT_PROJECT_NAME') {`
+
+* Commit and push the changes to the Jenkinsfile
+
 ## Define a new Multibranch Pipeline
 
 * Login to Jenkins in your browser
 * From the Dashboard, select "New Item"
 * Enter a name, select "Multibranch Pipeline," and then "Okay"
 * In the Branch Sources section, select "Add source" -> GitHub
-* For the Repository HTTPS URL enter https://github.com/t-prinz/HelloServlet.git
+* For the Repository HTTPS URL enter the name of the repository that has your Jenkinsfile
 * Click on Validate
 * Click on Save
 
