@@ -6,6 +6,8 @@ In this example, a Jenkins installation is performed inside of a RHEL 8 virtual 
 
 References:
 https://github.com/openshift/jenkins-client-plugin
+https://www.jenkins.io/solutions/pipeline/
+https://www.jenkins.io/doc/book/pipeline/syntax/
 
 ## Deploy a RHEL 8 virtual machine
 
