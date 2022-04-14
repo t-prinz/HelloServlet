@@ -30,3 +30,8 @@ buildNumber.properties
 .classpath
 .project
 .vscode/
+
+/target/
+#.settings
+.factorypath
+/build/
