@@ -218,3 +218,4 @@ oc create -f secret.json
 https://docs.openshift.com/container-platform/3.11/dev_guide/dev_tutorials/binary_builds.html
 https://docs.openshift.com/online/pro/using_images/s2i_images/java.html#s2i-images-java-deploy-applications
 http://v1.uncontained.io/playbooks/app_dev/binary_deployment_howto.html
+https://access.redhat.com/documentation/fr-fr/red_hat_jboss_web_server/5.5/html-single/red_hat_jboss_web_server_for_openshift#Create-an-OpenShift-application-using-existing-maven-binaries
