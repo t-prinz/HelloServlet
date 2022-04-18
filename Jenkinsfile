@@ -10,13 +10,13 @@ pipeline {
                         openshift.withProject('tprinz-dev') {
                             def saSelector1 = openshift.selector( "serviceaccount" )
                             saSelector1.describe()
-                            openshift.selector( 'deployment/helloworld-jws' ).describe()
+#                            openshift.selector( 'deployment/helloworld-jws' ).describe()
 
-                            def buildSelector = openshift.selector( 'buildconfig/helloworld-jws' )
-                            buildSelector.describe()
+#                            def buildSelector = openshift.selector( 'buildconfig/helloworld-jws' )
+#                            buildSelector.describe()
 
-                            def newBuild = buildSelector.startBuild()
-                            newBuild.logs('-f')
+#                            def newBuild = buildSelector.startBuild()
+#                            newBuild.logs('-f')
                         }
                     }
                 }

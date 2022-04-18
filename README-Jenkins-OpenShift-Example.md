@@ -72,6 +72,7 @@ In this example, the Jenkins server is used as the agent, so git needs to be ins
 
 ## Configure an OpenShift Cluster in Jenkins
 
+* Navigate to Manage Jenkins -> Configure System and find the OpenShift Plug-in section
 * Click on "Add OpenShift Cluster"
 * Provide a name and the REST API URL
 * Add a new credential.  For the "Kind" parameter, select "OpenShift Token for OpenShift Client Plugin."
