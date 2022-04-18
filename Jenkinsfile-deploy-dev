@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    stages {
+        stage('build') {
+            steps {
+                sh 'pwd'
+                sh 'ls -alF ocp_bin_build'
+                script {
+                    openshift.withCluster('ocpsandbox') {
+                        openshift.withProject('tprinz-dev') {
+
+                            openshift.raw("import-image helloworld-jws-jdk8")
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

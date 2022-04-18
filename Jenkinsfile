@@ -32,11 +32,12 @@ pipeline {
                             def imagestreamSelector = openshift.selector( 'imagestream/helloworld-jws-jdk8' )
                             imagestreamSelector.describe()
 
-                            openshift.raw("import-image helloworld-jws-jdk8")
-
                         }
                     }
                 }
+
+                sh 'echo DONE'
+                build(job: 'HelloServlet-deploy-dev')
             }
         }
     }
