@@ -20,6 +20,15 @@ pipeline {
                             def saSelector1 = openshift.selector( "serviceaccount" )
                             saSelector1.describe()
 
+                            def deploymentSelector = openshift.selector( 'deployment/helloworld-jws' ).describe()
+                            deploymentSelector.describe()
+
+                            def buildSelector = openshift.selector( 'buildconfig/helloworld-jws-jdk8' )
+                            buildSelector.describe()
+
+                            def newBuild = buildSelector.startBuild('--from-dir=./ocp_bin_build')
+                            newBuild.logs('-f')
+
                         }
                     }
                 }
