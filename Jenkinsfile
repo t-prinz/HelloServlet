@@ -31,7 +31,6 @@ pipeline {
 
                             def imagestreamSelector = openshift.selector( 'imagestream/helloworld-jws-jdk8' )
                             imagestreamSelector.describe()
-                            imagestreamSelector.importimage()
 
                         }
                     }
