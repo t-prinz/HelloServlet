@@ -4,7 +4,6 @@ pipeline {
         stage('build') {
             steps {
                 sh 'pwd'
-                sh 'ls -alF ocp_bin_build'
                 script {
                     openshift.withCluster('ocpsandbox') {
                         openshift.withProject('tprinz-dev') {
