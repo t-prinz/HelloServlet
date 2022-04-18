@@ -9,6 +9,11 @@ pipeline {
                 sh 'which git'
                 sh 'pwd'
                 sh 'ls -alF'
+                sh 'mvn clean'
+                sh 'mvn package'
+                sh 'mkdir -p ocp_bin_build/deployments'
+                sh 'cp target/HelloServlet-1.0.0.war ocp_bin_build/deployments/ROOT.war'
+                sh 'ls -alF ocp_bin_build'
                 script {
                     openshift.withCluster('ocpsandbox') {
                         openshift.withProject('tprinz-dev') {
