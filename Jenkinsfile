@@ -20,7 +20,7 @@ pipeline {
                             def saSelector1 = openshift.selector( "serviceaccount" )
                             saSelector1.describe()
 
-                            def deploymentSelector = openshift.selector( 'deployment/helloworld-jws' ).describe()
+                            def deploymentSelector = openshift.selector( 'deployment/helloworld-jws-jdk8' )
                             deploymentSelector.describe()
 
                             def buildSelector = openshift.selector( 'buildconfig/helloworld-jws-jdk8' )
