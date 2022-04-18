@@ -7,7 +7,8 @@ pipeline {
                 sh 'oc version'
                 sh 'which mvn'
                 sh 'which git'
-                sh 'ls -alRF ocp_bin_build'
+                sh 'pwd'
+                sh 'ls -alF'
                 script {
                     openshift.withCluster('ocpsandbox') {
                         openshift.withProject('tprinz-dev') {
