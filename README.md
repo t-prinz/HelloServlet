@@ -30,6 +30,10 @@ To list all local templates and image streams, use:
 
 `oc new-app -L`
 
+To list the available JBoss Web Server base images, use:
+
+`oc get is -n openshift | grep ^jboss-webserver | cut -f1 -d ' '`
+
 ## OpenShift Docker build
 
 This method uses the war file that was previously built along with the Dockerfile in this repository.  When specifying a docker build strategy, OpenShift looks for a file named Dockerfile in the repository, hence the copying of the EAP and JWS Dockerfiles.  There is probably a better way to do this.
