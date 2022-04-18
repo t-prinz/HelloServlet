@@ -29,6 +29,10 @@ pipeline {
                             def newBuild = buildSelector.startBuild('--from-dir=./ocp_bin_build')
                             newBuild.logs('-f')
 
+                            def imagestreamSelector = openshift.selector( 'imagestream/helloworld-jws-jdk8' )
+                            imagestreamSelector.describe()
+                            imagestreamSelector.import-image()
+
                         }
                     }
                 }
