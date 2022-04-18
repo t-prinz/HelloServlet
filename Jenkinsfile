@@ -37,7 +37,7 @@ pipeline {
                 }
 
                 sh 'echo DONE'
-                build(job: 'HelloServlet-deploy-dev')
+                build(job: 'HelloServlet-deploy-dev', wait: 'false')
             }
         }
     }
