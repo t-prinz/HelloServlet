@@ -4,6 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 sh 'id'
+                echo "JDK Version is ${params.jdk_version}"
                 sh 'oc version'
                 sh 'which mvn'
                 sh 'which git'
