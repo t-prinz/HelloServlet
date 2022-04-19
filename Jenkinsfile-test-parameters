@@ -19,19 +19,14 @@ pipeline {
                 script {
                     openshift.withCluster('ocpsandbox') {
                         openshift.withProject("${params.environment}") {
-                            def saSelector1 = openshift.selector( "serviceaccount" )
-                            saSelector1.describe()
 
-                            def deploymentSelector = openshift.selector( 'deployment/helloworld-jws-jdk8' )
-                            deploymentSelector.describe()
-
-                            def buildSelector = openshift.selector( 'buildconfig/helloworld-jws-jdk8' )
+                            def buildSelector = openshift.selector( "buildconfig/helloworld-jws-${params.jdk_version}" )
                             buildSelector.describe()
 
                             def newBuild = buildSelector.startBuild('--from-dir=./ocp_bin_build')
                             newBuild.logs('-f')
 
-                            def imagestreamSelector = openshift.selector( 'imagestream/helloworld-jws-jdk8' )
+                            def imagestreamSelector = openshift.selector( "imagestream/helloworld-jws-${params.jdk_version}" )
                             imagestreamSelector.describe()
                         }
                     }
