@@ -15,7 +15,7 @@ pipeline {
                     openshift.withCluster('ocpsandbox') {
                         openshift.withProject("${params.environment}") {
 
-                            openshift.raw("import-image helloworld-jws-${params.jdk_version}")
+                            openshift.raw("import-image helloworld-jws-${params.jdk_version} --confirm")
 
                         }
                     }
