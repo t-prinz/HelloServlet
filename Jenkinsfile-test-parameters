@@ -7,10 +7,6 @@ pipeline {
                 echo "JDK Version is ${params.jdk_version}"
                 echo "Environment is ${params.environment}"
                 sh 'oc version'
-                sh 'which mvn'
-                sh 'which git'
-                sh 'pwd'
-                sh 'ls -alF'
                 sh 'mvn clean'
                 sh 'mvn package'
                 sh 'mkdir -p ocp_bin_build/deployments'
@@ -26,8 +22,6 @@ pipeline {
                             def newBuild = buildSelector.startBuild('--from-dir=./ocp_bin_build')
                             newBuild.logs('-f')
 
-                            def imagestreamSelector = openshift.selector( "imagestream/helloworld-jws-${params.jdk_version}" )
-                            imagestreamSelector.describe()
                         }
                     }
                 }
