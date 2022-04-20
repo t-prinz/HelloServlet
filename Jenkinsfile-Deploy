@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    stages {
+        stage('deploy') {
+            steps {
+                sh 'id'
+                echo "JDK Version is ${params.jdk_version}"
+                echo "Environment is ${params.environment}"
+                sh 'oc version'
+                sh 'which mvn'
+                sh 'which git'
+                sh 'pwd'
+                sh 'ls -alF'
+                script {
+                    openshift.withCluster('ocpsandbox') {
+                        openshift.withProject("${params.environment}") {
+
+                            openshift.raw("import-image helloworld-jws-${params.jdk_version} --confirm")
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
