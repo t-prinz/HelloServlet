@@ -1,6 +1,4 @@
 # HelloServlet - Containerized Java Application Example
-another test a roo crossing...
-
 
 This example shows several different ways to containerize a sample Java web application using either EAP or Java Web Server (JWS).  Three methods of deployment are shown:
 
