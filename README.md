@@ -1,5 +1,6 @@
 # HelloServlet - Containerized Java Application Example
 
+
 This example shows several different ways to containerize a sample Java web application using either EAP or Java Web Server (JWS).  Three methods of deployment are shown:
 
 1.  Manual build:  In this scenario, the war file is manually built (the war file can be built with mvn or with javac).  Once the war file is built, a container image is built using the supplied Dockerfile.  From there, the container image is tagged and pushed to your container registry.
