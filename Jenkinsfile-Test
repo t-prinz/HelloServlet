@@ -5,7 +5,6 @@ pipeline {
             steps {
                 sh 'id'
                 sh 'oc version'
-                sh 'which mvn'
                 sh 'which git'
                 sh 'pwd'
                 sh 'ls -alF'
