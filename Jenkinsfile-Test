@@ -10,7 +10,7 @@ pipeline {
                 sh 'pwd'
                 sh 'ls -alF'
                 script {
-                    openshift.withCluster() {
+                    openshift.withCluster('ocpsandbox') {
                         openshift.withProject('user1') {
                             def saSelector1 = openshift.selector( "serviceaccount" )
                             saSelector1.describe()
