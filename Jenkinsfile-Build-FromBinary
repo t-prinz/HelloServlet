@@ -5,6 +5,7 @@ pipeline {
             steps {
                 sh 'id'
                 echo "JDK Version is ${params.jdk_version}"
+                echo "Environment is ${params.environment}"
                 sh 'oc version'
                 sh 'mvn clean'
                 sh 'mvn package'
@@ -13,7 +14,7 @@ pipeline {
                 sh 'ls -alF ocp_bin_build'
                 script {
                     openshift.withCluster('ocpsandbox') {
-                        openshift.withProject("helloservlet-dev") {
+                        openshift.withProject("${params.environment}") {
 
                             def buildSelector = openshift.selector( "buildconfig/helloworld-jws-${params.jdk_version}" )
                             buildSelector.describe()
