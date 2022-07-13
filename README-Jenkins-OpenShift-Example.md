@@ -77,7 +77,7 @@ In this example, the Jenkins server is used as the agent, so git needs to be ins
 * Provide a name and the REST API URL
 * Add a new credential.  For the "Kind" parameter, select "OpenShift Token for OpenShift Client Plugin."
 * Provide your OpenShift login token
-* Provide an ID
+* Provide an ID, e.g. - ocp-credential
 * Select the "Disable TLS Verify" option
 
 ## Create the Jenkinsfile
