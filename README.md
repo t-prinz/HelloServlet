@@ -217,6 +217,7 @@ oc create -f secret.json
 ```
 
 
+
 # References
 
 https://docs.openshift.com/container-platform/3.11/dev_guide/dev_tutorials/binary_builds.html
