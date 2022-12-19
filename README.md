@@ -147,7 +147,7 @@ Delete all of the OpenShift resources
 
 ### Use OpenShift to build this application using a base JWS image
 
-    oc new-app --name=helloworld-jws registry.redhat.io/jboss-webserver-5/webserver54-openjdk8-tomcat9-openshift-rhel8~https://github.com/t-prinz/HelloServlet.git
+    oc new-app --name=helloworld-jws jboss-webserver56-openjdk11-tomcat9-openshift-ubi8:latest~https://github.com/t-prinz/HelloServlet.git
     oc expose svc/helloworld-jws
 
 Below is a work in progress
