@@ -1,7 +1,7 @@
 #
 # Standard Maven .gitignore
 #
-#target/*
+target/*
 #target/HelloServlet-1.0.0/*
 #target/classes/*
 #target/generated-sources/*
