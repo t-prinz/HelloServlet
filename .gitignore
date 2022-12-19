@@ -1,12 +1,7 @@
 #
 # Standard Maven .gitignore
 #
-target/*
-#target/HelloServlet-1.0.0/*
-#target/classes/*
-#target/generated-sources/*
-#target/maven-archiver/*
-#target/maven-status/*
+target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
