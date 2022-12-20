@@ -1,39 +1,46 @@
 #!/bin/bash
 
+APP_NAME=ROOT
+TARGET=11
+SOURCE=11
+
 # Remove existing directory
 
-if [ -d WEB-INF ]
+if [ -d target ]
 then
   echo "Deleting existing directory"
-  rm -rf WEB-INF
+  rm -rf target
 fi
 
-# Remove existing war file
+## Remove existing war file
 
-if [ -f HelloServletManual.war ]
-then
-  echo "Removing existing war file"
-  rm HelloServletManual.war
-fi
+#if [ -f ${APP_NAME}.war ]
+#then
+#  echo "Removing existing war file"
+#  rm ${APP_NAME}.war
+#fi
 
 # Create directory structure
 
 echo "Creating directory structure"
-mkdir -p WEB-INF/classes
+mkdir -p target/${APP_NAME}/WEB-INF/classes
 
 # Compile the application; put the class file in a separate directory
 
 echo "Compiling the application"
 # -g
-javac -nowarn -target 1.8 -source 1.8 -encoding UTF-8 -classpath ~/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar -d WEB-INF/classes ../src/main/java/mypkg/HelloServlet.java 
+javac -nowarn -target ${TARGET} -source ${SOURCE} -encoding UTF-8 -classpath ~/.m2/repository/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar -d target/${APP_NAME}/WEB-INF/classes ../src/main/java/mypkg/HelloServlet.java 
 
 # Copy over the web.xml file
 
 echo "Copying over the web.xml file"
-cp ../src/main/webapp/WEB-INF/web.xml WEB-INF
+cp ../src/main/webapp/WEB-INF/web.xml target/${APP_NAME}/WEB-INF
 
 # Create the war file
 
-echo "Creating the war file"
-jar -cvf ./HelloServletManual.war WEB-INF
-#jar -cvf ./ROOT.war WEB-INF
+#echo "Creating the war file"
+
+pushd target/${APP_NAME}
+jar -cvf ../${APP_NAME}.war .
+
+popd
