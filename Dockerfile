@@ -5,8 +5,7 @@
 #
 # In the JBoss EAP container, JBoss EAP runs as the jboss user but copied files are brought in as root.
 #
-#FROM registry.redhat.io/jboss-eap-7/eap74-openjdk11-openshift-rhel8:latest
-FROM registry.redhat.io/jboss-eap-7/eap74-ubi8:latest
+FROM registry.redhat.io/jboss-eap-7/eap74-openjdk11-openshift-rhel8:latest
 
 ARG WAR_FILE=ROOT.war
 
