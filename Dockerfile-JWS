@@ -1,6 +1,3 @@
-FROM registry.redhat.io/jboss-webserver-5/webserver54-openjdk8-tomcat9-openshift-rhel8
+FROM registry.redhat.io/jboss-webserver-6/jws60-openjdk17-openshift-rhel8
 
-COPY target/ROOT.war /deployments
-
-EXPOSE 8080
-EXPOSE 8443
+COPY --chown=jboss:root target/ROOT.war /deployments

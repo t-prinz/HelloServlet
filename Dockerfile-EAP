@@ -1,23 +1,45 @@
+# Reference: https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/8.0/html/using_jboss_eap_on_openshift_container_platform/assembly_building-and-running-jboss-eap-applicationson-openshift-container-platform_default
+
+# Use EAP 8 Builder image to create a JBoss EAP 8 server
+# with its default configuration
+
+FROM registry.redhat.io/jboss-eap-8/eap8-openjdk17-builder-openshift-rhel8:latest AS builder
+
+# Set up environment variables for provisioning. 
+ENV GALLEON_PROVISION_FEATURE_PACKS org.jboss.eap:wildfly-ee-galleon-pack,org.jboss.eap.cloud:eap-cloud-galleon-pack
+ENV GALLEON_PROVISION_LAYERS cloud-default-config
+# Specify the JBoss EAP version  
+ENV GALLEON_PROVISION_CHANNELS org.jboss.eap.channels:eap-8.0
+
+
+# Run the assemble script to provision the server.
+RUN /usr/local/s2i/assemble
+
+# Copy the JBoss EAP 8 server from the builder image to the runtime image.
+FROM registry.redhat.io/jboss-eap-8/eap8-openjdk17-runtime-openshift-rhel8:latest AS runtime
+
+# Set appropriate ownership and permissions.
+COPY --from=builder --chown=jboss:root $JBOSS_HOME $JBOSS_HOME
+
+# Steps to add:
+# (1) COPY the WAR/EAR to $JBOSS_HOME/standalone/deployments
+#       with the jboss:root user. For example:
+#     COPY --chown=jboss:root my-app.war $JBOSS_HOME/standalone/deployments 
+
+COPY --chown=jboss:root target/ROOT.war $JBOSS_HOME/standalone/deployments 
+
+# (2) (optional) server modification. You can modify EAP server configuration:
 #
-# Reference:  https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.0/html-single/using_the_red_hat_jboss_enterprise_application_platform_docker_image/index#deploying_applications
+#       * invoke management operations. For example
 #
-# Note from reference:
+#        RUN $JBOSS_HOME/bin/jboss-cli.sh --commands="embed-server,/system-property=Foo:add(value=Bar)"
 #
-# In the JBoss EAP container, JBoss EAP runs as the jboss user but copied files are brought in as root.
+#        First operation must always be embed-server.
 #
-#FROM registry.redhat.io/jboss-eap-7/eap74-openjdk11-openshift-rhel8:latest
-FROM registry.redhat.io/jboss-eap-7/eap74-openjdk8-openshift-rhel8:latest
+#       * copy a modified standalone.xml in $JBOSS_HOME/standalone/configuration/
+#          for example
+#
+#      COPY --chown=jboss:root standalone.xml  $JBOSS_HOME/standalone/configuration
 
-ARG WAR_FILE=ROOT.war
-
-COPY target/$WAR_FILE $JBOSS_HOME/standalone/deployments
-
-USER root
-RUN chown jboss:jboss $JBOSS_HOME/standalone/deployments/$WAR_FILE
-USER jboss
-
-#EXPOSE 8080
-#EXPOSE 8443
-
-##CMD [“/opt/eap/bin/openshift-launch.sh”, “run”]
-#CMD /opt/eap/bin/openshift-launch.sh run
+# Ensure appropriate permissions for the copied files.
+RUN chmod -R ug+rwX $JBOSS_HOME
