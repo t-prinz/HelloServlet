@@ -1,8 +1,8 @@
 package mypkg;
 
 import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 
 public class HelloServlet extends HttpServlet {
    @Override
@@ -33,7 +33,7 @@ public class HelloServlet extends HttpServlet {
         // Echo client's request information
         out.println("<p>Request URI: " + request.getRequestURI() + "</p>");
         out.println("<p>Protocol: " + request.getProtocol() + "</p>");
-        out.println("<p>PathInfo: " + request.getPathInfo() + "</p>");
+        // out.println("<p>PathInfo: " + request.getPathInfo() + "</p>");
         out.println("<p>Remote Address: " + request.getRemoteAddr() + "</p>");
         // Generate a random number upon each request
         out.println("<p>A Random Number: <strong>" + Math.random() + "</strong></p>");
